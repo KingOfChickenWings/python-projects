@@ -9,16 +9,16 @@ numbers_random = random.choice(numbers_thing)   #Chooses a random number from th
 if numbers_random % 2 == 1:
     print(numbers_random)
     if cap_gamble == "ODD":
-        print(f"You Dont Have an Extra Chromosome and you won {money * 2}")
+        print(f"You won {money * 2}!")
     else:
         print(
-            f"This is why you're unwanted, failed abortion and have an extra chromosome and you lose your {money}")
+            f"You lost your {money}!")
 elif numbers_random % 2 == 0:
     print(numbers_random)
     if cap_gamble == "EVEN":
-        print(f"You Dont Have an Extra Chromosome and you won {money * 2}")
+        print(f"You won {money * 2}!")
     else:
         print(
-            f"This is why you're unwanted, failed abortion and have an extra chromosome and you lose your {money}")
+            f"You lost your {money}!")
 else:
-    print("You're a gay b*st*rd so try again you piece of sh*t")
+    print("Please enter a valid number...")
