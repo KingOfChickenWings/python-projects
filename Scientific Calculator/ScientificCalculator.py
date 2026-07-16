@@ -1,37 +1,35 @@
 import math
 # =================================
+# FUNCTIONS
+# =================================
 
 
 def addition(numbers):
-    final_answer = 0
+    result = 0
     for number in numbers:
-        final_answer += number
-    return final_answer
-# =================================
+        result += number
+    return result
 
 
 def subtraction(numbers):
-    final_answer = numbers[0]
+    result = numbers[0]
     for number in numbers[1:]:
-        final_answer -= number
-    return final_answer
-# =================================
+        result -= number
+    return result
 
 
 def multiplication(numbers):
-    final_answer = 1
+    result = 1
     for number in numbers:
-        final_answer *= number
-    return final_answer
-# =================================
+        result *= number
+    return result
 
 
 def division(numbers):
-    final_answer = numbers[0]
+    result = numbers[0]
     for number in numbers[1:]:
-        final_answer /= number
-    return final_answer
-# =================================
+        result /= number
+    return result
 
 
 def square_root(number):
@@ -39,26 +37,95 @@ def square_root(number):
         return f"({math.sqrt(abs(number))})i"
     else:
         return f"({math.sqrt(number)})"
+
+
+def power(numbers):
+    result = numbers[0]
+    for number in numbers[1:]:
+        result **= number
+    return result
+
+
+def modulus(numbers):
+    result = numbers[0]
+    for number in numbers[1:]:
+        result %= number
+    return result
+
+
+def floor_division(numbers):
+    result = numbers[0]
+    for number in numbers[1:]:
+        result //= number
+    return result
+
 # =================================
 
 
+def factorial(number):
+    return round(math.factorial(number))
+
+
+def sine(number):
+    return round(math.sin(math.radians(number)))
+
+
+def cosine(number):
+    return round(math.cos(math.radians(number)))
+
+
+def tangent(number):
+    return round(math.tan(math.radians(number)))
+
+
+# =================================
 operations = {
     '+': addition,
     '-': subtraction,
     '/': division,
-    '*': multiplication
+    '*': multiplication,
+    '^': power,
+    '%': modulus,
+    '//': floor_division
 }
+
+extra_operations = {
+    'sqrt': square_root,
+    'sin': sine,
+    'cos': cosine,
+    'tan': tangent
+}
+# =================================
+# MAIN PROGRAM
 # =================================
 while True:
     numbers = []
     operation = input(
-        "Enter operation (+, -, *, /, sqrt)(exit to stop): ").strip().lower()
+        "Enter operation (+, -, *, /, ^, %, //, !, sin, cos, tan, sqrt)(exit to stop): ").strip().lower()
 
     if operation == 'exit':
         break
+# =================================
 
-    elif operation in ['+', '-', '*', '/']:
-# ================================================================================================
+    elif operation == '!':
+        try:
+            number = int(input("Enter your number: "))
+            answer = factorial(number)
+            print(f"The factorial of your number is {answer}")
+        except ValueError:
+            print("Please enter a non-negative and non-decimal number.")
+
+    elif operation in extra_operations:
+        try:
+            number = float(input("Enter your number: "))
+            answer = extra_operations[operation](number)
+            print(f"Your final answer is -> {answer}")
+
+        except ValueError:
+            print("Please enter a valid number.")
+
+    elif operation in operations:
+        # ================================================================================================
 
         try:
             terms = int(input("Enter number of terms: "))
@@ -71,12 +138,12 @@ while True:
                 current_term = float(input(f"Enter term {term + 1}: "))
                 numbers.append(current_term)
 
-            print(f"Your current numbers are -> {numbers}")
+            print(f"Your numbers are -> {numbers}")
 
 # =================================================================================
 
-            final_answer = operations[operation](numbers)
-            print(f"Your final answer is {final_answer}")
+            result = operations[operation](numbers)
+            print(f"Your final answer is {result}")
 
 # ============================================================
 
@@ -86,15 +153,6 @@ while True:
         except ZeroDivisionError:
             print("Divisor cannot be zero.")
 # ============================================================
-
-    elif operation == 'sqrt':
-        try:
-            number = float(input("Enter your number: "))
-            answer = square_root(number)
-            print(f"The square root of your number is {answer}")
-
-        except ValueError:
-            print("Please enter a valid number.")
 
     else:
         print("Please enter a valid operation.")
