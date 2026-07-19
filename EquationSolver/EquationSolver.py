@@ -1,5 +1,8 @@
 import math
 
+# =================================
+# Main program
+# =================================
 
 while True:
     try:
@@ -7,6 +10,10 @@ while True:
     except ValueError:
         print("Please enter a valid number. (1, 2)")
         continue
+
+# =================================
+# Linear
+# =================================
 
     if degree == 1:
         while True:
@@ -23,6 +30,10 @@ while True:
         else:
             print(f"The value of x is {(c - b)/a}")
             break
+
+# =================================
+# Quadratic
+# =================================
 
     elif degree == 2:
         while True:
